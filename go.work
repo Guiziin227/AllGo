@@ -6,4 +6,5 @@ use (
 	"./8 - Slices, arrays e ponteiros/8.1 - Introducao"
 	"./8 - Slices, arrays e ponteiros/8.2 - Copia simples"
 	"./8 - Slices, arrays e ponteiros/8.3 - Deep Copy"
+	"./8 - Slices, arrays e ponteiros/8.4 - Ponteiros"
 )
