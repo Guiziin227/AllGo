@@ -9,4 +9,5 @@ use (
 	"./8 - Slices, arrays e ponteiros/8.4 - Ponteiros"
 	"./8 - Slices, arrays e ponteiros/8.5 - Deep Copy Ponteiros"
 	"./8 - Slices, arrays e ponteiros/8.6 - Filter, map, reduce"
+	"./9 - Maps/9.1 - Inicio"
 )
