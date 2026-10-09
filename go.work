@@ -10,4 +10,6 @@ use (
 	"./8 - Slices, arrays e ponteiros/8.5 - Deep Copy Ponteiros"
 	"./8 - Slices, arrays e ponteiros/8.6 - Filter, map, reduce"
 	"./9 - Maps/9.1 - Inicio"
+	"./9 - Maps/9.2 - Race Condition"
+	"./9 - Maps/9.3 - Mutex p Maps"
 )
