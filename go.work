@@ -12,4 +12,5 @@ use (
 	"./9 - Maps/9.1 - Inicio"
 	"./9 - Maps/9.2 - Race Condition"
 	"./9 - Maps/9.3 - Mutex p Maps"
+	"./9 - Maps/9.4 - SyncMap"
 )
