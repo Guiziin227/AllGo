@@ -2,6 +2,7 @@ go 1.26.8
 
 use (
 	"./1 - Pacotes"
+	"./10 - Channels/10.1 - Intro"
 	"./7 - Teste Go Work"
 	"./8 - Slices, arrays e ponteiros/8.1 - Introducao"
 	"./8 - Slices, arrays e ponteiros/8.2 - Copia simples"
