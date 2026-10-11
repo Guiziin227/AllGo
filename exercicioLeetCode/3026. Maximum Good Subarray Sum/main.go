@@ -43,17 +43,3 @@ func maximumSubarraySum(nums []int, k int) int64 {
 
 	return result
 }
-
-func reduce(acc []int64, f func(int64, int64) int64) int64 {
-	if len(acc) == 0 {
-		return 0
-	}
-
-	result := acc[0]
-
-	for i := 1; i < len(acc); i++ {
-		result = f(result, acc[i])
-	}
-
-	return result
-}
