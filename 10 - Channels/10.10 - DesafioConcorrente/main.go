@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 //
@@ -62,35 +61,56 @@ import (
 //
 //}
 
+//func main() {
+//	palavras := []string{"golang", "concorrencia", "goroutine", "threads", "canais"}
+//
+//	var wg sync.WaitGroup
+//
+//	jobs := make(chan string, len(palavras))
+//	results := make(chan string, len(palavras))
+//	for _, palavra := range palavras {
+//		jobs <- palavra
+//	}
+//	close(jobs)
+//
+//	workers := 2
+//	for i := 0; i < workers; i++ {
+//		wg.Add(1)
+//		go func(w int) {
+//			defer wg.Done()
+//			for palavra := range jobs {
+//				time.Sleep(500 * time.Millisecond)
+//				results <- fmt.Sprintf("Processando: %s (worker %d)", palavra, w)
+//			}
+//		}(i)
+//	}
+//
+//	wg.Wait()
+//	close(results)
+//
+//	for result := range results {
+//		fmt.Println(result)
+//	}
+//
+//}
+
 func main() {
-	palavras := []string{"golang", "concorrencia", "goroutine", "threads", "canais"}
-
 	var wg sync.WaitGroup
+	var mu sync.Mutex
+	saldo := 0
 
-	jobs := make(chan string, len(palavras))
-	results := make(chan string, len(palavras))
-	for _, palavra := range palavras {
-		jobs <- palavra
-	}
-	close(jobs)
+	totalDepositos := 1000
 
-	workers := 2
-	for i := 0; i < workers; i++ {
+	for i := 0; i < totalDepositos; i++ {
 		wg.Add(1)
-		go func(w int) {
+		go func() {
 			defer wg.Done()
-			for palavra := range jobs {
-				time.Sleep(500 * time.Millisecond)
-				results <- fmt.Sprintf("Processando: %s (worker %d)", palavra, w)
-			}
-		}(i)
+			mu.Lock()
+			saldo++
+			mu.Unlock()
+		}()
 	}
 
 	wg.Wait()
-	close(results)
-
-	for result := range results {
-		fmt.Println(result)
-	}
-
+	fmt.Printf("Saldo esperado: %d | Saldo obtido: %d\n", totalDepositos, saldo)
 }
