@@ -4,6 +4,7 @@ use (
 	"./1 - Pacotes"
 	"./10 - Channels/10.1 - Intro"
 	"./10 - Channels/10.10 - DesafioConcorrente"
+	"./10 - Channels/10.11 - FanOUtFanIn com Pipeline de Processamento"
 	"./10 - Channels/10.2 - ChannelComBuffer"
 	"./10 - Channels/10.3 - Direcoes"
 	"./10 - Channels/10.4 - ErrorGroup"
