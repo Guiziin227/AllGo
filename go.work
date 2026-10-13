@@ -13,6 +13,7 @@ use (
 	"./10 - Channels/10.7 - Select"
 	"./10 - Channels/10.8 - Agendador"
 	"./10 - Channels/10.9 - Broadcast"
+	"./11 - Sinc Avancado/11.1 - RWMutex"
 	"./7 - Teste Go Work"
 	"./8 - Slices, arrays e ponteiros/8.1 - Introducao"
 	"./8 - Slices, arrays e ponteiros/8.2 - Copia simples"
