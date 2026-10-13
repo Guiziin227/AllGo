@@ -16,6 +16,7 @@ use (
 	"./11 - Sinc Avancado/11.1 - RWMutex"
 	"./11 - Sinc Avancado/11.2 - Once"
 	"./11 - Sinc Avancado/11.3 - Cond"
+	"./11 - Sinc Avancado/11.4 - Gerenciamento de Pool com Cond"
 	"./7 - Teste Go Work"
 	"./8 - Slices, arrays e ponteiros/8.1 - Introducao"
 	"./8 - Slices, arrays e ponteiros/8.2 - Copia simples"
