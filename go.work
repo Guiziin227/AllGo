@@ -30,4 +30,5 @@ use (
 	"./9 - Maps/9.4 - SyncMap"
 	"./9 - Maps/9.5 - Cache mutex"
 	"./9 - Maps/9.6 - Cache SyncMap"
+	./tarefa-cli
 )
