@@ -1,4 +1,4 @@
-go 1.26.8
+go 1.26.9
 
 use (
 	"./1 - Pacotes"
@@ -30,6 +30,7 @@ use (
 	"./9 - Maps/9.4 - SyncMap"
 	"./9 - Maps/9.5 - Cache mutex"
 	"./9 - Maps/9.6 - Cache SyncMap"
-	"./encurtador-url"
+	./biblioteca-api
+	./encurtador-url
 	./tarefa-cli
 )
