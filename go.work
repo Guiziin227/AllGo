@@ -22,6 +22,7 @@ use (
 	"./11 - Sinc Avancado/11.7 - Pool Comparativo"
 	"./11 - Sinc Avancado/11.8 - Atomic"
 	"./11 - Sinc Avancado/11.9 - Atomic Comparativo"
+	"./12 - Interfaces/12.1 - Intro"
 	"./7 - Teste Go Work"
 	"./8 - Slices, arrays e ponteiros/8.1 - Introducao"
 	"./8 - Slices, arrays e ponteiros/8.2 - Copia simples"
