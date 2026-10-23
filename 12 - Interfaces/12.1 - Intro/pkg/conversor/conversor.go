@@ -1,25 +1,10 @@
-package main
+package conversor
 
-import (
-	"encoding/json"
-	"fmt"
-)
+import "fmt"
 
 type Conversor interface {
 	Converter(string) (map[string]any, error)
 	Formato() string
-}
-
-type ConversorJSON struct{}
-
-func (j ConversorJSON) Converter(dados string) (map[string]any, error) {
-	var resultado map[string]any
-	err := json.Unmarshal([]byte(dados), &resultado)
-	return resultado, err
-}
-
-func (j ConversorJSON) Formato() string {
-	return "JSON"
 }
 
 type Gerenciador struct {
@@ -46,15 +31,4 @@ func (g *Gerenciador) Processar(formato, dados string) {
 
 func (g *Gerenciador) RegistrarConversor(c Conversor) {
 	g.conversores[c.Formato()] = c
-}
-
-func main() {
-
-	gerenciador := NewGerenciador()
-	gerenciador.RegistrarConversor(ConversorJSON{})
-
-	testeJSON := `{
-						"pessoa":{
-						"nome": "Alice", "idade": 30}}`
-	gerenciador.Processar("JSON", testeJSON)
 }
