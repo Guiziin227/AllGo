@@ -1,11 +1,14 @@
 package library
 
-import "sync"
+import (
+	"context"
+	"sync"
+)
 
 type Repository interface {
-	Save(book *Book) error
-	FindByID(id string) (*Book, error)
-	FindAll() ([]*Book, error)
+	Save(ctx context.Context, book *Book) error
+	FindByID(ctx context.Context, id string) (*Book, error)
+	FindAll(ctx context.Context) ([]*Book, error)
 }
 
 type MemoryRepository struct {
@@ -21,14 +24,21 @@ func NewMemoryRepository() *MemoryRepository {
 	}
 }
 
-func (r *MemoryRepository) Save(book *Book) error {
+func (r *MemoryRepository) Save(ctx context.Context, book *Book) error {
+	if err := ctx.Err(); err != nil {
+		return err
+	}
+
 	r.mu.Lock()
 	defer r.mu.Unlock()
 	r.books[book.ID] = book
 	return nil
 }
 
-func (r *MemoryRepository) FindByID(id string) (*Book, error) {
+func (r *MemoryRepository) FindByID(ctx context.Context, id string) (*Book, error) {
+	if err := ctx.Err(); err != nil {
+		return nil, err
+	}
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 	book, exists := r.books[id]
@@ -38,7 +48,10 @@ func (r *MemoryRepository) FindByID(id string) (*Book, error) {
 	return book, nil
 }
 
-func (r *MemoryRepository) FindAll() ([]*Book, error) {
+func (r *MemoryRepository) FindAll(ctx context.Context) ([]*Book, error) {
+	if err := ctx.Err(); err != nil {
+		return nil, err
+	}
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 	books := make([]*Book, 0, len(r.books))
