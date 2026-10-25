@@ -1,6 +1,7 @@
 package library
 
 import (
+	"context"
 	"errors"
 	"sync"
 )
@@ -14,14 +15,14 @@ func NewService(repo Repository) *Service {
 	return &Service{repo: repo}
 }
 
-func (s *Service) CreateBook(id, title, author string, totalStock int) (*Book, error) {
+func (s *Service) CreateBook(ctx context.Context, id, title, author string, totalStock int) (*Book, error) {
 
 	book, err := NewBook(id, title, author, totalStock)
 	if err != nil {
 		return nil, err
 	}
 
-	_, err = s.repo.FindByID(book.ID)
+	_, err = s.repo.FindByID(ctx, book.ID)
 	if err == nil {
 		return nil, ErrBookAlreadyExists
 	}
@@ -29,22 +30,22 @@ func (s *Service) CreateBook(id, title, author string, totalStock int) (*Book, e
 		return nil, err
 	}
 
-	err = s.repo.Save(book)
+	err = s.repo.Save(ctx, book)
 	if err != nil {
 		return nil, err
 	}
 	return book, nil
 }
 
-func (s *Service) ListBooks() ([]*Book, error) {
-	return s.repo.FindAll()
+func (s *Service) ListBooks(ctx context.Context) ([]*Book, error) {
+	return s.repo.FindAll(ctx)
 }
 
-func (s *Service) BorrowBook(id string) (*Book, error) {
+func (s *Service) BorrowBook(ctx context.Context, id string) (*Book, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	book, err := s.repo.FindByID(id)
+	book, err := s.repo.FindByID(ctx, id)
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +55,7 @@ func (s *Service) BorrowBook(id string) (*Book, error) {
 		return nil, err
 	}
 
-	err = s.repo.Save(book)
+	err = s.repo.Save(ctx, book)
 	if err != nil {
 		return nil, err
 	}
@@ -62,11 +63,11 @@ func (s *Service) BorrowBook(id string) (*Book, error) {
 	return book, nil
 }
 
-func (s *Service) ReturnBook(id string) (*Book, error) {
+func (s *Service) ReturnBook(ctx context.Context, id string) (*Book, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	book, err := s.repo.FindByID(id)
+	book, err := s.repo.FindByID(ctx, id)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +77,7 @@ func (s *Service) ReturnBook(id string) (*Book, error) {
 		return nil, err
 	}
 
-	err = s.repo.Save(book)
+	err = s.repo.Save(ctx, book)
 	if err != nil {
 		return nil, err
 	}
