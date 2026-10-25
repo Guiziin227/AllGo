@@ -16,12 +16,12 @@ func NewService(repo Repository) *Service {
 }
 
 func (s *Service) CreateBook(ctx context.Context, id, title, author string, totalStock int) (*Book, error) {
-
 	book, err := NewBook(id, title, author, totalStock)
 	if err != nil {
 		return nil, err
 	}
-
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	_, err = s.repo.FindByID(ctx, book.ID)
 	if err == nil {
 		return nil, ErrBookAlreadyExists

@@ -31,7 +31,9 @@ func (r *MemoryRepository) Save(ctx context.Context, book *Book) error {
 
 	r.mu.Lock()
 	defer r.mu.Unlock()
-	r.books[book.ID] = book
+
+	bookCopy := *book
+	r.books[book.ID] = &bookCopy
 	return nil
 }
 
@@ -45,7 +47,9 @@ func (r *MemoryRepository) FindByID(ctx context.Context, id string) (*Book, erro
 	if !exists {
 		return nil, ErrBookNotFound
 	}
-	return book, nil
+
+	bookCopy := *book
+	return &bookCopy, nil
 }
 
 func (r *MemoryRepository) FindAll(ctx context.Context) ([]*Book, error) {
@@ -56,7 +60,29 @@ func (r *MemoryRepository) FindAll(ctx context.Context) ([]*Book, error) {
 	defer r.mu.RUnlock()
 	books := make([]*Book, 0, len(r.books))
 	for _, book := range r.books {
-		books = append(books, book)
+		bookCopy := *book
+		books = append(books, &bookCopy)
 	}
 	return books, nil
 }
+
+//func (r *MemoryRepository) FindAll(ctx context.Context) ([]*Book, error) {
+//	// Simula uma consulta ao banco que demora 5 segundos,
+//	// mas aborta na hora se o contexto cancelar antes!
+//	select {
+//	case <-time.After(5 * time.Second):
+//		// Segue o baile normalmente após 5s
+//	case <-ctx.Done():
+//		return nil, ctx.Err()
+//	}
+//
+//	r.mu.RLock()
+//	defer r.mu.RUnlock()
+//
+//	books := make([]*Book, 0, len(r.books))
+//	for _, book := range r.books {
+//		bookCopy := *book
+//		books = append(books, &bookCopy)
+//	}
+//	return books, nil
+//}
