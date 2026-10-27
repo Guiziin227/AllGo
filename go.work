@@ -24,6 +24,7 @@ use (
 	"./11 - Sinc Avancado/11.9 - Atomic Comparativo"
 	"./12 - Interfaces/12.1 - Intro"
 	"./12 - Interfaces/12.2 - Interface Vazia"
+	"./12 - Interfaces/12.3 - Reflect"
 	"./7 - Teste Go Work"
 	"./8 - Slices, arrays e ponteiros/8.1 - Introducao"
 	"./8 - Slices, arrays e ponteiros/8.2 - Copia simples"
