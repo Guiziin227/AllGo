@@ -28,6 +28,7 @@ use (
 	"./12 - Interfaces/12.4 - Generics"
 	"./12 - Interfaces/12.5 - Constraints"
 	"./12 - Interfaces/12.6 - Constraints PreDef"
+	"./12 - Interfaces/12.7 - Desafio Busca Generica"
 	"./7 - Teste Go Work"
 	"./8 - Slices, arrays e ponteiros/8.1 - Introducao"
 	"./8 - Slices, arrays e ponteiros/8.2 - Copia simples"
