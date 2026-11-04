@@ -51,3 +51,26 @@ func main() {
 	fmt.Println(leCoisas(listaString, "5"))
 
 }
+
+/*
+
+type (
+	Pessoa struct {
+		Nome  string
+		Idade int
+	}
+
+	Buscavel interface{
+		constraints.Integer | ~string | Pessoa
+)
+
+func Busca[T Buscavel](lista[]T, f func(T) bool) int{
+	for i, valor := range lista{
+		if f(valor){
+			return i
+		}
+	}
+	return -1
+}
+
+*/
