@@ -32,6 +32,7 @@ use (
 	"./12 - Interfaces/12.8 - Cache generics"
 	"./13 - contexto/13.1 - Intro"
 	"./13 - contexto/13.2 - Cancelamento"
+	"./13 - contexto/13.3 - Timeout&Deadline"
 	"./7 - Teste Go Work"
 	"./8 - Slices, arrays e ponteiros/8.1 - Introducao"
 	"./8 - Slices, arrays e ponteiros/8.2 - Copia simples"
